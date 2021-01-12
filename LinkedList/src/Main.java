@@ -32,6 +32,7 @@ public class Main {
     public static void visit(LinkedList<String> cities){
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
+        boolean movingForward = true;
         ListIterator<String> i = cities.listIterator();
         if (cities.isEmpty()){
             System.out.println("There are no cities in your Region");
@@ -48,6 +49,12 @@ public class Main {
                     break;
 
                 case 1:
+                    if(!movingForward){
+                        if (i.hasNext()){
+                            i.next();
+                        }
+                        movingForward=true;
+                    }
                     if(i.hasNext()){
                         System.out.println("You are now visiting "+ i.next());
                     }else{
@@ -56,6 +63,12 @@ public class Main {
                     break;
 
                 case 2:
+                    if(movingForward){
+                        if (i.hasPrevious()){
+                            i.previous();
+                        }
+                        movingForward = false;
+                    }
                     if(i.hasPrevious()){
                         System.out.println("You are now visiting "+ i.previous());
                         break;
