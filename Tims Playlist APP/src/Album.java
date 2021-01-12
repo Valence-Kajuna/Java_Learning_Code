@@ -31,11 +31,21 @@ public class Album {
 
     public boolean addToPlaylist(int trackNumber, LinkedList<Song> playlist){
        int index = trackNumber-1;
-       if(index>0 && index<this.songs.size()){
+       if(index>=0 && index<this.songs.size()){
            playlist.add(this.songs.get(index));
            return true;
        }
         System.out.println("The album does not have the track with the track number "+ trackNumber);
        return false;
+    }
+
+    public boolean addToPlaylist(String title, LinkedList<Song> playlist){
+        Song checkedSong = findSong(title);
+        if (checkedSong!=null){
+            playlist.add(checkedSong);
+            return true;
+        }
+        System.out.println("The song "+ title + " is not in the album");
+        return false;
     }
 }
