@@ -82,4 +82,12 @@ public class Playlist {
     public void menu(){
         System.out.println("Press: \n 0: To quit \n 1: To next song \n 2: To previous song");
     }
+
+    public void displayPlaylistSongs(){
+        int counter =0;
+        ListIterator<Song> i = this.playlistSongs.listIterator();
+        while(i.hasNext()){
+            System.out.println((counter+1)+"."+ i.next().getSongName());
+        }
+    }
 }
