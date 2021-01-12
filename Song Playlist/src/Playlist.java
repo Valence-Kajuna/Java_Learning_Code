@@ -44,4 +44,42 @@ public class Playlist {
         }
         return false;
     }
+
+    public void actions(){
+
+        ListIterator<Song> i = this.playlistSongs.listIterator();
+        menu();
+        Scanner scanner = new Scanner(System.in);
+        while(i.hasNext()){
+        int decision = scanner.nextInt();
+        switch (decision){
+            case 0:
+                System.out.println("Quiting the program...");
+                break;
+
+            case 1:
+                if (i.hasNext()){
+                    System.out.println(i.next().getSongName()+" now playing");
+                }else{
+                    System.out.println("End of the playlist");
+                }
+                break;
+
+            case 2:
+                if (i.hasPrevious()){
+                    System.out.println(i.previous().getSongName()+ " now playing");
+                }else{
+                    System.out.println("You are at the beginning of the playlist");
+                }
+
+        }
+
+        }
+
+
+    }
+
+    public void menu(){
+        System.out.println("Press: \n 0: To quit \n 1: To next song \n 2: To previous song");
+    }
 }
