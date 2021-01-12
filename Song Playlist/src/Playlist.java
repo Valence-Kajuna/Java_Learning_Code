@@ -19,18 +19,20 @@ public class Playlist {
             ListIterator<Song> i = album.getAlbumSongs().listIterator();
             int index =0;
             while(i.hasNext()){
-                System.out.println((index+1)+"."+i.next().getSongName());
+                System.out.println((++index)+"."+i.next().getSongName());
             }
-            System.out.println("\n Enter the number of the song you wish to add to the playlist");
+            System.out.println("\n Enter the number of the song you wish to add to the playlist or 0 to quit");
             songChoice = scanner.nextInt();
+            while (songChoice!=0){
             Song choice = album.getAlbumSongs().get(songChoice-1);
             if (songExistInPlaylist(choice.getSongName(), this.playlistSongs)){
                 System.out.println("The song already exist in the playlist");
-                return false;
-            }
+            }else{
             this.playlistSongs.add(choice);
             System.out.println(choice.getSongName()+ " has been successfully added to "+ this.name);
-            return true;
+            }
+            songChoice = scanner.nextInt();
+            }
         }
         return false;
     }
@@ -49,12 +51,14 @@ public class Playlist {
 
         ListIterator<Song> i = this.playlistSongs.listIterator();
         menu();
+        boolean run = true;
         Scanner scanner = new Scanner(System.in);
-        while(i.hasNext()){
+        while(run){
         int decision = scanner.nextInt();
         switch (decision){
             case 0:
                 System.out.println("Quiting the program...");
+                run= false;
                 break;
 
             case 1:
@@ -87,7 +91,7 @@ public class Playlist {
         int counter =0;
         ListIterator<Song> i = this.playlistSongs.listIterator();
         while(i.hasNext()){
-            System.out.println((counter+1)+"."+ i.next().getSongName());
+            System.out.println((counter++)+"."+ i.next().getSongName());
         }
     }
 }
