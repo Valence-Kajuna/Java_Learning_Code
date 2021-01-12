@@ -39,12 +39,61 @@ public class Main {
     }
 
     private static void play(LinkedList<Song> playlist){
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        boolean foward = true;
         ListIterator<Song> i = playlist.listIterator();
         if (playlist.size() ==0){
             System.out.println("No songs in the playlist");
             return;
         }else{
             System.out.println("Now playing "+ i.next().toString());
+        }
+
+        while(!quit){
+            int decision = scanner.nextInt();
+            switch (decision){
+                case 0:
+                    System.out.println("Playlist completed");
+                    quit=  true;
+                    break;
+
+                case 1:
+                    if(!foward){
+                        if (i.hasNext()) {
+                            i.next();
+                        }
+                    }
+                    if (i.hasNext()){
+                        System.out.println("Now playing " +i.next().toString());
+                        foward= true;
+                        break;
+                    }else{
+                        System.out.println("You are at the end of the playlist");
+
+                    }
+                    break;
+                case 2:
+                    if (foward){
+                        if(i.hasPrevious()){
+                            i.previous();
+                        }
+                    }
+                    if(i.hasPrevious()){
+                        System.out.println("Now playing " + i.previous().toString());
+                        foward = false;
+                    }else{
+                        System.out.println("You are at the beginning of the playlist");
+                    }
+                    break;
+                case 3:
+                    printList(playlist);
+                    break;
+                case 4:
+                    printMenu();
+                    break;
+
+            }
         }
     }
 }
